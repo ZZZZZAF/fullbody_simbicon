@@ -547,7 +547,6 @@ class MyWorldNode(dart.gui.osg.RealTimeWorldNode):
                 self.ext_force_arrow_shape.setDataVariance(dart.dynamics.Shape.STATIC)
                 self.ext_force_visual.hide()
 
-            # Draw facing direction
             self.facing_direction_duration -= 1
             if self.facing_direction_duration <= 0:
                 self.facing_direction_duration = 0
@@ -804,7 +803,7 @@ def print_usage():
         print("Press 1,2,3,4 can give character force from different direction.")
         print("Press Z can lock the camera behind the character.")
         print("Press X can lock the camera on the left side of the character.")
-        print("Press left arrow button or right arrow button can control character to turn left or turn right.")
+        print("Press left arrow button or right arrow button can control character to turn left or turn right.(여러 번 눌러야 됨. 구현상 한번 누를 때마다 0.3초 동안만 힘을 가")
         print("Print R can reset the character to origin point and clear all velocities(linear and angular).")
 
 def main():
