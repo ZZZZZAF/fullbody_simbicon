@@ -827,7 +827,7 @@ def print_usage():
 
 def main():
 
-    pathname = "/./home/nuanshu/fullbody_simbicon/final result ver2(4.28)"
+    pathname = "/home/swkokr/dartpy_sample/fullbody_simbicon/final result ver2(4.28)"
     world = dart.simulation.World()
 
     urdfParser = dart.utils.DartLoader()
