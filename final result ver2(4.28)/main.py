@@ -812,8 +812,8 @@ class MyWorldNode(dart.gui.osg.RealTimeWorldNode):
     def reset_robot(self):
         self.skel.setPositions(self.state0)
         self.skel.setVelocities(np.zeros(self.dofs))
-        self.current_controller = 'stand'
-        self.current_state = 'state1'
+        #self.current_controller = 'stand'
+        #self.current_state = 'state1'
         # self.skel.setVelocity(3, 0.2)
 def print_notice():
     print("Notice: 변수 pathname을 수정해서 실행하세요.")
@@ -826,6 +826,36 @@ def print_usage():
         print("Press X can lock the camera on the left side of the character.")
         print("Press left arrow button or right arrow button can control character to turn left or turn right.(여러 번 눌러야 됨. 구현상 한번 누를 때마다 0.3초 동안만 힘을 가함.)")
         print("Print R can reset the character to origin point and clear all velocities(linear and angular).")
+
+def rescaleTotalMass(robot, newMass):
+
+    r = newMass / robot.getMass();
+
+    for i in range(robot.getNumBodyNodes()):
+        bodyNode = robot.getBodyNode(i)
+        currMass = bodyNode.getMass()
+        bodyNode.setMass(r * currMass)
+
+def rescaleTotalMomentOfInertia(robot, newMass):
+    
+    r = newMass / robot.getMass();
+
+    t = dict()
+    t['ixx']=0.0
+    t['iyy']=1.0
+    t['izz']=2.0
+    t['ixy']=3.0
+    t['ixz']=4.0
+    t['iyz']=5.0
+
+    for i in range(robot.getNumBodyNodes()):
+        bodyNode = robot.getBodyNode(i)
+        bodyNode.getMomentOfInertia(t['ixx'], t['iyy'], t['izz'],
+                                      t['ixy'], t['ixz'], t['iyz'])
+        bodyNode.setMomentOfInertia(r*t['ixx'], r*t['iyy'], r*t['izz'],
+                                      r*t['ixy'], r*t['ixz'], r*t['iyz'])
+        print(t)
+        print()
 
 def main():
 
@@ -851,6 +881,11 @@ def main():
         # print(i.getPositionUpperLimit())
         # print(i.getPositionLowerLimit())
     # robot.getDof('j_pelvis_rot_z').setPosition(2)
+
+    print(robot.getMass())
+    rescaleTotalMass(robot, 50.5)
+    print(robot.getMass())
+    #rescaleTotalMomentOfInertia(robot, 50.5)
 
 
     ground = urdfParser.parseSkeleton(pathname + "/ground.urdf")
