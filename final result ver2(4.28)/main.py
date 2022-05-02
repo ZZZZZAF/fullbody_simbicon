@@ -2,6 +2,8 @@ import dartpy as dart
 import numpy as np
 import math
 
+import os
+
 
 class InputHandler(dart.gui.osg.GUIEventHandler):
     def __init__(self, node):
@@ -827,7 +829,9 @@ def print_usage():
 
 def main():
 
-    pathname = "/home/swkokr/dartpy_sample/fullbody_simbicon/final result ver2(4.28)"
+    #pathname = "/home/swkokr/dartpy_sample/fullbody_simbicon/final result ver2(4.28)"
+    pathname = os.path.dirname(os.path.abspath(__file__))
+
     world = dart.simulation.World()
 
     urdfParser = dart.utils.DartLoader()
