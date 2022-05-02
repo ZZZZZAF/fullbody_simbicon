@@ -857,6 +857,17 @@ def rescaleTotalMomentOfInertia(robot, newMass):
         print(t)
         print()
 
+def getTotalMass(robot):
+    totalMass = 0
+    for i in range(robot.getNumBodyNodes()):
+        bodyNode = robot.getBodyNode(i)
+        print(bodyNode.getName())
+        print(bodyNode.getMass())
+        totalMass = totalMass + bodyNode.getMass()
+
+    return totalMass
+
+
 def main():
 
     #pathname = "/home/swkokr/dartpy_sample/fullbody_simbicon/final result ver2(4.28)"
@@ -883,6 +894,7 @@ def main():
     # robot.getDof('j_pelvis_rot_z').setPosition(2)
 
     print(robot.getMass())
+    print(getTotalMass(robot))
     rescaleTotalMass(robot, 50.5)
     print(robot.getMass())
     #rescaleTotalMomentOfInertia(robot, 50.5)
