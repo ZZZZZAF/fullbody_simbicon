@@ -894,9 +894,9 @@ def main():
     # robot.getDof('j_pelvis_rot_z').setPosition(2)
 
     print(robot.getMass())
-    print(getTotalMass(robot))
-    rescaleTotalMass(robot, 50.5)
-    print(robot.getMass())
+    #print(getTotalMass(robot))
+    #rescaleTotalMass(robot, 50.5)
+    #print(robot.getMass())
     #rescaleTotalMomentOfInertia(robot, 50.5)
 
 

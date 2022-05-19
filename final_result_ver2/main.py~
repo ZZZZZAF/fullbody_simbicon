@@ -862,7 +862,7 @@ def getTotalMass(robot):
     for i in range(robot.getNumBodyNodes()):
         bodyNode = robot.getBodyNode(i)
         print(bodyNode.getName())
-        print(bodyNode.bodyNode.getMass())
+        print(bodyNode.getMass())
         totalMass = totalMass + bodyNode.getMass()
 
     return totalMass
@@ -895,8 +895,8 @@ def main():
 
     print(robot.getMass())
     print(getTotalMass(robot))
-    rescaleTotalMass(robot, 50.5)
-    print(robot.getMass())
+    #rescaleTotalMass(robot, 50.5)
+    #print(robot.getMass())
     #rescaleTotalMomentOfInertia(robot, 50.5)
 
 
